@@ -11,20 +11,10 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  computed: {
-    ...mapGetters({
-      token: 'index/user_token'
-    })
-  } 
+    computed: {
+      ...mapGetters(['token'])
+    } 
 }
-
-// export default {
-//   computed: {
-//     ...mapGetters({
-//     getLoggedin: 'module/getLoggedin'
-//     })
-//   }
-// }
 </script>
 
 <style>

@@ -31,17 +31,14 @@ import { mapGetters } from 'vuex'
             email: this.email,
             password: this.password
           })
-        //   this.$router.push("/users")
+          this.$router.push("/users")
         } catch(e) {
           this.error = e.message
         }
       }
     },
-  computed: {
-    // ...mapGetters({
-    //   token: 'index/token'
-    // })
+    computed: {
       ...mapGetters(['token'])
-  } 
+    } 
   }
 </script>
