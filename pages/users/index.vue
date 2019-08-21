@@ -9,6 +9,7 @@
     operator_type:
     {{operator_type}}
     <br />
+    <nuxt-link to="/operator">Operatorへ</nuxt-link>
   </div>
 </template>
 

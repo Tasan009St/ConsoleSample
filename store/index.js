@@ -53,6 +53,30 @@ export const actions = {
       }
       throw error
     }
+  },
+  getCurrentUser({ commit }) {
+    try {
+      const response_current = {
+        token:
+          'GETCURRENT76819d768290cccb255cb3df228ce51e91f4fd514282fbc13e2c1f663d03b9a2',
+        account: {
+          operator_id: 'yAVoyQiPzDK3ZtVzcqx7Jg',
+          email: 'wallabee.dev@gmail.com',
+          operator_type: 'shop',
+          registered_at: '2019-08-07 12:26:59',
+          updated_at: '2019-08-07 12:26:59',
+          shop: null
+        }
+      }
+      console.log('response_current')
+      console.log(response_current)
+      commit('SET_USER', response_current)
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        throw new Error('Bad credentials')
+      }
+      throw error
+    }
   }
 }
 
