@@ -9,8 +9,13 @@ export const state = () => ({
 export const mutations = {
   SET_USER(state, response) {
     state.token = response.token
+    state.operator_type = response.account.operator_type
+
+    //debug log
     console.log('state.token')
     console.log(state.token)
+    console.log('state.operator_type')
+    console.log(state.operator_type)
   }
 }
 
@@ -57,5 +62,6 @@ export const getters = {
   //   console.log(state.token)
   //   return state.token
   // }
-  token: state => state.token
+  token: state => state.token,
+  operator_type: state => state.operator_type
 }

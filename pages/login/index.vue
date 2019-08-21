@@ -9,6 +9,9 @@
     </form>
     token：
     {{token}}
+    <br />
+    operator_type:
+    {{operator_type}}
   </div>
 </template>
 
@@ -38,7 +41,7 @@ import { mapGetters } from 'vuex'
       }
     },
     computed: {
-      ...mapGetters(['token'])
+      ...mapGetters(['token','operator_type'])
     } 
   }
 </script>
