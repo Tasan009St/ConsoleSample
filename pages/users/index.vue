@@ -8,6 +8,7 @@
     <br />
     operator_type:
     {{operator_type}}
+    <br />
   </div>
 </template>
 
