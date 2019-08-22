@@ -20,6 +20,7 @@ export default {
   },
   async created() {
     console.log("created");
+
     try {
         await this.$store.dispatch("getCurrentUser", {
         })
@@ -29,8 +30,7 @@ export default {
       }
   },
       computed: {
-      ...mapGetters(['token','operator_type'])
+      ...mapGetters(['token','operator_type', 'operator_menu', 'updated_at'])
     } 
-  
 }
 </script>

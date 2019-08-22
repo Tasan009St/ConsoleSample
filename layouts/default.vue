@@ -1,5 +1,7 @@
 <template>
   <div>
+    <navbar :operator_menu = operator_menu :operator_list_url = operator_list_url></navbar>
+    <hr>
     <nuxt />
   </div>
 </template>
@@ -53,3 +55,30 @@ html {
   background-color: #35495e;
 }
 </style>
+
+
+<script>
+import Navbar from '~/components/Navbar.vue'
+import { mapGetters } from 'vuex'
+
+export default {
+  components: {
+    Navbar
+  },
+  async created() {
+    console.log("created");
+
+    try {
+        await this.$store.dispatch("getCurrentUser", {
+        })
+        this.$router.push("/operator")
+      } catch(e) {
+        this.error = e.message
+      }
+  },
+      computed: {
+      ...mapGetters(['token','operator_type', 'operator_menu', 'operator_list_url'])
+    } 
+}
+
+</script>

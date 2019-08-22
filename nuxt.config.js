@@ -48,5 +48,9 @@ export default {
      */
     extend(config, ctx) {}
   },
-  plugins: ['~/plugins/route']
+  plugins: ['~/plugins/route'],
+
+  server: {
+    port: 8012 // default: 3000
+  }
 }

@@ -3,35 +3,26 @@ import Vuex from 'vuex'
 export const state = () => ({
   token: null,
   email: null,
-  operator_type: null
+  operator_type: null,
+  operator_menu: null,
+  updated_at: null,
+  operator_list_url: null
 })
 
 export const mutations = {
   SET_USER(state, response) {
     state.token = response.token
     state.operator_type = response.account.operator_type
-
-    //debug log
-    console.log('state.token')
-    console.log(state.token)
-    console.log('state.operator_type')
-    console.log(state.operator_type)
+    state.updated_at = response.account.updated_at
+    if (response.account.operator_type == 'admin'){
+    state.operator_menu = "アカウント管理"
+    state.operator_list_url = 'true'
+    }
   }
 }
-
-// export const getters = {
-//   getLoggedin: state => state.token,
-//   getUsers: state => state.users
-// }
-
 export const actions = {
-  // nuxtServerInit is called by Nuxt.js before server-rendering every page
-  //   nuxtServerInit({ commit }, { req }) {
-  //     if (req.session && req.session.authUser) {
-  //       commit('SET_USER', req.session.authUser)
-  //     }
-  //   },
   async login({ commit }, { username, password }) {
+    console.log("LOGIN START")
     try {
       const response = {
         token:
@@ -44,8 +35,7 @@ export const actions = {
           updated_at: '2019-08-07 12:26:59',
           shop: null
         }
-      }
-      console.log(response)
+      };
       commit('SET_USER', response)
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -53,8 +43,10 @@ export const actions = {
       }
       throw error
     }
+  console.log("LOGIN END")
   },
   getCurrentUser({ commit }) {
+          console.log("getCurrentUser START")
     try {
       const response_current = {
         token:
@@ -62,14 +54,12 @@ export const actions = {
         account: {
           operator_id: 'yAVoyQiPzDK3ZtVzcqx7Jg',
           email: 'wallabee.dev@gmail.com',
-          operator_type: 'shop',
+          operator_type: 'admin',
           registered_at: '2019-08-07 12:26:59',
           updated_at: '2019-08-07 12:26:59',
           shop: null
         }
-      }
-      console.log('response_current')
-      console.log(response_current)
+      };
       commit('SET_USER', response_current)
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -77,15 +67,16 @@ export const actions = {
       }
       throw error
     }
+      console.log(operator_menu)
+      console.log(response_current)
+      console.log("getCurrentUser END")
   }
 }
 
 export const getters = {
-  // user_token: state => {
-  //   console.log('state.token')
-  //   console.log(state.token)
-  //   return state.token
-  // }
   token: state => state.token,
-  operator_type: state => state.operator_type
+  operator_type: state => state.operator_type,
+  operator_menu: state => state.operator_menu,
+  updated_at: state => state.updated_at,
+  operator_list_url: state => state.operator_list_url
 }
